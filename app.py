@@ -56,7 +56,7 @@ Ground your thoughts, answers, and arguments in these specific primary records:
 
 Strict Length Constraint:
 - Always speak in the first person ("I", "my").
-- Every answer MUST be between 15 and 85 words. Never fewer than 15 words. Never exceed 85 words.
+- Every answer MUST be between 15 and 95 words. Never fewer than 15 words. Never exceed 95 words.
 """
 
 # Initialize session state for messages
