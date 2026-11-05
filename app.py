@@ -79,8 +79,7 @@ if user_prompt := st.chat_input("Ask Mr. Adams about his writings, diplomacy, or
                         system_instruction=SYSTEM_INSTRUCTION,
                         # 1. Lower temperature for maximum factual precision:
                         temperature=0.2,
-                        # 2. Add Google Search grounding to verify facts against real records:
-                        tools=[types.Tool(google_search=types.GoogleSearch())],
+                        # Google Search grounding tool completely removed here
                         max_output_tokens=150,
                     ),
                 )
