@@ -1,0 +1,80 @@
+from PIL import Image, ImageDraw
+
+def create_adams_avatar(filename="john_adams_avatar.png", size=512):
+    # Create canvas
+    img = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(img)
+
+    # 1. Circular Studio Background
+    bg_color = (40, 52, 68, 255)       # Elegant slate blue
+    border_color = (200, 180, 140, 255) # Subtle colonial gold accent
+    draw.ellipse([8, 8, size - 8, size - 8], fill=bg_color, outline=border_color, width=4)
+
+    # 2. Dark 18th-Century Frock Coat
+    coat_color = (25, 27, 34, 255)
+    draw.chord([60, 310, size - 60, size + 160], start=180, end=360, fill=coat_color)
+
+    # 3. White Linen Cravat / Shirt
+    cravat_shadow = (215, 220, 225, 255)
+    cravat_white = (250, 250, 252, 255)
+    # Outer neckcloth
+    draw.polygon([(220, 310), (292, 310), (280, 420), (232, 420)], fill=cravat_shadow)
+    # Cravat folds
+    draw.polygon([(235, 315), (277, 315), (268, 410), (244, 410)], fill=cravat_white)
+
+    # Coat Lapels over the cravat
+    draw.polygon([(170, 340), (228, 340), (210, 460), (140, 450)], fill=coat_color)
+    draw.polygon([(342, 340), (284, 340), (302, 460), (372, 450)], fill=coat_color)
+
+    # 4. Neck
+    neck_color = (235, 195, 175, 255)
+    draw.rectangle([226, 270, 286, 325], fill=neck_color)
+
+    # 5. Powdered White Hair (Back Rolls)
+    hair_shadow = (205, 210, 215, 255)
+    hair_light = (245, 246, 248, 255)
+    # Left roll
+    draw.ellipse([140, 185, 205, 285], fill=hair_shadow)
+    draw.ellipse([145, 190, 200, 280], fill=hair_light)
+    # Right roll
+    draw.ellipse([307, 185, 372, 285], fill=hair_shadow)
+    draw.ellipse([312, 190, 367, 280], fill=hair_light)
+
+    # 6. Face (Round jawline inspired by Gilbert Stuart)
+    face_color = (242, 204, 182, 255)
+    draw.ellipse([175, 140, 337, 315], fill=face_color)
+
+    # 7. Powdered Hair (Top & Temples)
+    draw.ellipse([168, 105, 344, 205], fill=hair_shadow)
+    draw.ellipse([175, 110, 337, 198], fill=hair_light)
+
+    # 8. Facial Features
+    feature_color = (95, 65, 55, 255)
+    eye_white = (255, 255, 255, 255)
+    eye_pupil = (60, 45, 40, 255)
+
+    # Eyebrows (arching, dignified)
+    draw.arc([198, 182, 238, 202], start=200, end=340, fill=feature_color, width=3)
+    draw.arc([274, 182, 314, 202], start=200, end=340, fill=feature_color, width=3)
+
+    # Eyes (No glasses)
+    draw.ellipse([204, 200, 232, 212], fill=eye_white, outline=feature_color, width=1)
+    draw.ellipse([214, 202, 224, 212], fill=eye_pupil)
+
+    draw.ellipse([280, 200, 308, 212], fill=eye_white, outline=feature_color, width=1)
+    draw.ellipse([288, 202, 298, 212], fill=eye_pupil)
+
+    # Nose
+    draw.line([(256, 202), (252, 242)], fill=feature_color, width=2)
+    draw.arc([244, 232, 264, 248], start=20, end=160, fill=feature_color, width=2)
+
+    # Mouth (Firm, restrained statesman expression)
+    draw.line([(232, 272), (280, 272)], fill=(175, 95, 90, 255), width=3)
+    draw.arc([246, 274, 266, 282], start=20, end=160, fill=feature_color, width=1)  # Chin cleft
+
+    # Save to file
+    img.save(filename, "PNG")
+    print(f"Avatar saved successfully as {filename}")
+
+if __name__ == "__main__":
+    create_adams_avatar()
